@@ -35,3 +35,30 @@ Vanishment this world!
 ## 其他
 >   未来自己准备去美国留学，学影视方向的内容。如果可以，希望老师能照顾下。同样自己也会努力完成作业，把需要做的事情尽力做好。
 
+## 忘记写代码了
+` <SCRIPT type="text/javascript">
+$(document).ready(function() {
+    $("#checkedAll").click(function(){
+        //try{
+        if($(this).attr("checked") == true){ //check all
+            $("input[name='checkbox_name']").each(function(){
+                $(this).attr("checked",true);
+            });
+        }else{
+            $("input[name='checkbox_name']").each(function(){
+                $(this).attr("checked",false);
+            });
+        }
+        //}catch(e){
+        //alert(e.description+e.name+e.message)
+        //}
+    });
+});
+</SCRIPT>
+    <div class="components-list">
+        <input type="checkbox" name="checkbox_name" id="checkbox_name_1" />1<br />
+        <input type="checkbox" name="checkbox_name" id="checkbox_name_2" />2<br />
+        <input type="checkbox" name="checkbox_name" id="checkbox_name_3" />3<br />
+        <input type="checkbox" name="checkbox_name" id="checkbox_name_4" />4<br />
+        <input type="checkbox" name="checkedAll" id="checkedAll"/>全选/取消全选
+    </div>`
