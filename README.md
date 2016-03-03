@@ -1,7 +1,16 @@
 # 自我介绍
-![icon](http://imgsrc.baidu.com/forum/cp%3Dtieba%2C10%2C480%3Bap%3D%B9%ED%C6%FC4%B0%C9%2C90%2C488/sign=8344a45fe61190ef15b69a9ba77eff77/b7d212dfa9ec8a1365562352f603918fa1ecc036.jpg?v=tbs)
+![icon](http://imgsrc.baidu.com/forum/w%3D580/sign=dfa604958b82b9013dadc33b438ca97e/572c11dfa9ec8a13737d7852f603918fa0ecc018.jpg)
+
+> それをバースト!  
+现実!それを砕け!  
+精神!Vanishment this world!
 
 ##基本资料
+* 学号：13081216
+* 姓名：孔祥媛
+* 性别：女
+* QQ：676353856
+* 邮箱：kong950321@163.com
 
 ##个人爱好
 
