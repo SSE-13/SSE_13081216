@@ -36,7 +36,8 @@ Vanishment this world!
 >   未来自己准备去美国留学，学影视方向的内容。如果可以，希望老师能照顾下。同样自己也会努力完成作业，把需要做的事情尽力做好。
 
 ## 忘记写代码了
-` <SCRIPT type="text/javascript">
+```
+<SCRIPT type="text/javascript">
 $(document).ready(function() {
     $("#checkedAll").click(function(){
         //try{
@@ -61,4 +62,26 @@ $(document).ready(function() {
         <input type="checkbox" name="checkbox_name" id="checkbox_name_3" />3<br />
         <input type="checkbox" name="checkbox_name" id="checkbox_name_4" />4<br />
         <input type="checkbox" name="checkedAll" id="checkedAll"/>全选/取消全选
-    </div>`
+    </div>
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//
+//         .............................................
+//                  佛祖镇楼                  BUG辟易
+    ```
