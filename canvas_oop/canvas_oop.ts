@@ -33,7 +33,7 @@ class Bitmap extends DisplayObject {
 
         var image = imagePool[this.source];
         if (image) {
-            context.drawImage(image, 0, 0);
+            context.drawImage(image, 10, 10);
         }
         else {
             context.font = "20px Arial";
@@ -61,9 +61,9 @@ class Rect extends DisplayObject {
 class TextField extends DisplayObject {
 
     render(context: CanvasRenderingContext2D) {
-        context.font = "20px Arial";
+        context.font = "50px Arial";
         context.fillStyle = '#000000';
-        context.fillText('13081216', 0, 20);
+        context.fillText('13081216', 0, 200);
     }
 }
 
@@ -126,6 +126,8 @@ bitmap.source = 'wander-icon.jpg';
 
 var bitmap2 = new Bitmap();
 bitmap.source = 'illust.jpg';
+bitmap2.x=720;
+bitmap2.y=1083;
 
 //渲染队列
 var renderQueue = [ rect2, text,bitmap,bitmap2];

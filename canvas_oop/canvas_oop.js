@@ -45,8 +45,8 @@ var Rect = (function (_super) {
     __extends(Rect, _super);
     function Rect() {
         _super.apply(this, arguments);
-        this.width = 100;
-        this.height = 100;
+        this.width = 720;
+        this.height = 1280;
         this.color = '#FF0000';
     }
     Rect.prototype.render = function (context) {
