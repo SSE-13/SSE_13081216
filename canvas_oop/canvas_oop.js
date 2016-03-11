@@ -31,7 +31,7 @@ var Bitmap = (function (_super) {
     Bitmap.prototype.render = function (context) {
         var image = imagePool[this.source];
         if (image) {
-            context.drawImage(image, 10, 10);
+            context.drawImage(image, 800, 1000);
         }
         else {
             context.font = "20px Arial";

@@ -61,9 +61,9 @@ class Rect extends DisplayObject {
 class TextField extends DisplayObject {
 
     render(context: CanvasRenderingContext2D) {
-        context.font = "50px Arial";
+        context.font = "40px Arial";
         context.fillStyle = '#000000';
-        context.fillText('13081216', 0, 200);
+        context.fillText('13081216', 0,50);
     }
 }
 
@@ -108,7 +108,7 @@ var rect = new Rect();
 rect.width = 200;
 rect.height = 100;
 rect.color = '#00FF00'
-*/
+
 
 var rect2 = new Rect();
 rect2.width = 300;
@@ -116,7 +116,7 @@ rect2.height = 50;
 rect2.x = 200;
 rect2.y = 200;
 rect2.rotation = Math.PI / 8;
-rect2.color = '#00FFFF'
+rect2.color = '#00FFFF'*/
 
 var text = new TextField();
 text.x = 30;
@@ -126,11 +126,11 @@ bitmap.source = 'wander-icon.jpg';
 
 var bitmap2 = new Bitmap();
 bitmap.source = 'illust.jpg';
-bitmap2.x=720;
-bitmap2.y=1083;
+bitmap2.x=0;
+bitmap2.y=200;
 
 //渲染队列
-var renderQueue = [ rect2, text,bitmap,bitmap2];
+var renderQueue = [text,bitmap,bitmap2];
 //资源加载列表
 var imageList = ['wander-icon.jpg','illust.jpg'];
 
