@@ -46,9 +46,9 @@ class Bitmap extends DisplayObject {
 
 class Rect extends DisplayObject {
 
-    width = 100
+    width = 720
 
-    height = 100;
+    height = 1280;
 
     color = '#FF0000';
 
