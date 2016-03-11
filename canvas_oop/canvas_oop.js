@@ -109,11 +109,11 @@ rect2.color = '#00FFFF';
 var text = new TextField();
 text.x = 10;
 var bitmap = new Bitmap();
-bitmap.source = 'http://img1.gamersky.com/image2014/11/20141111my_05/30_S.jpg';
+bitmap.source = 'wander-icon.jpg';
 //渲染队列
 var renderQueue = [rect, rect2, text, bitmap];
 //资源加载列表
-var imageList = ['http://img1.gamersky.com/image2014/11/20141111my_05/30_S.jpg'];
+var imageList = ['wander-icon.jpg'];
 //先加载资源，加载成功之后执行渲染队列
 loadResource(imageList, function () {
     drawQueue(renderQueue);
