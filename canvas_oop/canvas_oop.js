@@ -45,8 +45,8 @@ var Rect = (function (_super) {
     __extends(Rect, _super);
     function Rect() {
         _super.apply(this, arguments);
-        this.width = 10;
-        this.height = 10;
+        this.width = 720;
+        this.height = 1280;
         this.color = '#FF0000';
     }
     Rect.prototype.render = function (context) {
@@ -114,8 +114,8 @@ var bitmap = new Bitmap();
 bitmap.source = 'wander-icon.jpg';
 var bitmap2 = new Bitmap();
 bitmap.source = 'illust.jpg';
-bitmap2.x = 10;
-bitmap2.y = 23;
+bitmap2.x = 720;
+bitmap2.y = 1083;
 //渲染队列
 var renderQueue = [rect2, text, bitmap, bitmap2];
 //资源加载列表
