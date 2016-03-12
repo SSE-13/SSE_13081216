@@ -61,9 +61,9 @@ class Rect extends DisplayObject {
 class TextField extends DisplayObject {
 
     render(context: CanvasRenderingContext2D) {
-        context.font = "30px Arial bold";
+        context.font = "40px Arial bold";
         context.fillStyle = '#FFFFFF';
-        context.fillText('相信猪会飞', 0, 20);
+        context.fillText('13081216', 0, 20);
     }
 }
 
@@ -117,24 +117,23 @@ var context = canvas.getContext("2d");
 // rect2.rotation = Math.PI / 8;
 // rect2.color = '#00FFFF'
 
-// var text = new TextField();
-// text.x = 10;
+var text = new TextField();
+text.x = 10;
 
-var bitmap1 = new Bitmap();
-bitmap1.source = 'illust.jpg';
 
 var bitmap2 = new Bitmap();
-bitmap1.source = 'logo.png';
+bitmap2.source = 'logo.png';
+bitmap2.x=70;
+bitmap2.y=600;
 
 var bitmap3 = new Bitmap();
-bitmap2.source = 'start.png';
-bitmap2.x=180;
-bitmap2.y=60;
+bitmap3.source = 'start.png';
+bitmap3.x=270;
+bitmap3.y=880;
 
+var bitmap4 = new Bitmap();
+bitmap4.source = 'bg.png';
 
-var text1 = new TextField();
-text1.x = 450;
-text1.y = 150;
 
 
 
@@ -150,9 +149,9 @@ text2.x = 450;
 text2.y = 610;
 
 //渲染队列
-var renderQueue = [bitmap1,bitmap2,bitmap3,text1,rect,text2];
+var renderQueue = [bitmap4,bitmap2,bitmap3];
 //资源加载列表
-var imageList = ['illust.jpg','logo.png','start.png'];
+var imageList = ['bg.png','logo.png','start.png',text];
 
 //先加载资源，加载成功之后执行渲染队列
 loadResource(imageList, function() {
