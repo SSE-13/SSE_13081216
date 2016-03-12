@@ -31,7 +31,7 @@ var Bitmap = (function (_super) {
     Bitmap.prototype.render = function (context) {
         var image = imagePool[this.source];
         if (image) {
-            context.drawImage(image, 800, 1000);
+            context.drawImage(image, 0, 0);
         }
         else {
             context.font = "20px Arial";
@@ -45,8 +45,8 @@ var Rect = (function (_super) {
     __extends(Rect, _super);
     function Rect() {
         _super.apply(this, arguments);
-        this.width = 720;
-        this.height = 1280;
+        this.width = 100;
+        this.height = 100;
         this.color = '#FF0000';
     }
     Rect.prototype.render = function (context) {
@@ -61,9 +61,9 @@ var TextField = (function (_super) {
         _super.apply(this, arguments);
     }
     TextField.prototype.render = function (context) {
-        context.font = "40px Arial";
+        context.font = "20px Arial";
         context.fillStyle = '#000000';
-        context.fillText('13081216', 0, 50);
+        context.fillText('HelloWorld', 0, 20);
     };
     return TextField;
 }(DisplayObject));
@@ -95,32 +95,25 @@ function loadResource(imageList, callback) {
 }
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
-/*
 var rect = new Rect();
 rect.width = 200;
 rect.height = 100;
-rect.color = '#00FF00'
-
-
+rect.color = '#00FF00';
 var rect2 = new Rect();
 rect2.width = 300;
 rect2.height = 50;
 rect2.x = 200;
 rect2.y = 200;
 rect2.rotation = Math.PI / 8;
-rect2.color = '#00FFFF'*/
+rect2.color = '#00FFFF';
 var text = new TextField();
-text.x = 30;
+text.x = 10;
 var bitmap = new Bitmap();
 bitmap.source = 'wander-icon.jpg';
-var bitmap2 = new Bitmap();
-bitmap.source = 'illust.jpg';
-bitmap2.x = 0;
-bitmap2.y = 200;
 //渲染队列
-var renderQueue = [text, bitmap, bitmap2];
+var renderQueue = [rect, rect2, text, bitmap];
 //资源加载列表
-var imageList = ['wander-icon.jpg', 'illust.jpg'];
+var imageList = ['wander-icon.jpg'];
 //先加载资源，加载成功之后执行渲染队列
 loadResource(imageList, function () {
     drawQueue(renderQueue);
