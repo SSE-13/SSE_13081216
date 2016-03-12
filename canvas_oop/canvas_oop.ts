@@ -59,11 +59,11 @@ class Rect extends DisplayObject {
 }
 
 class TextField extends DisplayObject {
-
+    //color='#FFFFFF';
     render(context: CanvasRenderingContext2D) {
-        context.font = "40px Arial bold";
+        context.font = "17px 微软雅黑";
         context.fillStyle = '#FFFFFF';
-        context.fillText('13081216', 0, 20);
+        context.fillText('アプリバージョン[1.9.1] for student:13081216', 0, 40);
     }
 }
 
@@ -109,16 +109,14 @@ var context = canvas.getContext("2d");
 // rect.color = '#00FF00'
 
 
-// var rect2 = new Rect();
-// rect2.width = 300;
-// rect2.height = 50;
-// rect2.x = 200;
-// rect2.y = 200;
-// rect2.rotation = Math.PI / 8;
-// rect2.color = '#00FFFF'
+
+
+//var text = new TextField();
+//text.x = 10;
 
 var text = new TextField();
-text.x = 10;
+text.x = 180;
+text.y = 820;
 
 
 var bitmap2 = new Bitmap();
@@ -139,19 +137,22 @@ bitmap4.source = 'bg.png';
 
 //button
 var rect = new Rect();
-rect.x = 430;
-rect.y = 600;
-rect.width = 150;
-rect.height = 50;
+rect.x = 0;
+rect.y = 1000;
+rect.width = 720;
+rect.height = 20;
 
-var text2 = new TextField();
-text2.x = 450;
-text2.y = 610;
+var rect2 = new Rect();
+rect2.x = 0;
+rect2.y = 1200;
+rect.color = '#762626'
+rect2.width = 720;
+rect2.height = 15;
 
 //渲染队列
-var renderQueue = [bitmap4,bitmap2,bitmap3];
+var renderQueue = [bitmap4,bitmap2,bitmap3,text,rect,rect2];
 //资源加载列表
-var imageList = ['bg.png','logo.png','start.png',text];
+var imageList = ['bg.png','logo.png','start.png'];
 
 //先加载资源，加载成功之后执行渲染队列
 loadResource(imageList, function() {
