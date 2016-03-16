@@ -74,9 +74,7 @@ class Body {
                 this.vx -= duringTime * F * GRAVITY;                
             }
             else
-                if(this.vx = 0){
-                    this.vx = this.vx;
-                }
+                
                 this.vx += duringTime * F * GRAVITY;
             }
         
@@ -85,7 +83,7 @@ class Body {
             this.y = 0;
             this.vy = -BOUNCE * this.vy;
         }
-
+        
         //TODO： 左右越界反弹
         if(this.x + this.width>=BOUNDS_RIGHT || this.x <= BOUNDS_LEFT){
             this.vx=-BOUNCE * this.vx;

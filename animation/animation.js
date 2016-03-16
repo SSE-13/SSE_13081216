@@ -55,10 +55,8 @@ var Body = (function () {
             if (this.vx > 0) {
                 this.vx -= duringTime * F * GRAVITY;
             }
-            else if (this.vx = 0) {
-                this.vx = this.vx;
-            }
-            this.vx += duringTime * F * GRAVITY;
+            else
+                this.vx += duringTime * F * GRAVITY;
         }
         if (this.y < 0) {
             this.y = 0;
