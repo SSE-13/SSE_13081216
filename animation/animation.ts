@@ -11,6 +11,8 @@ const BOUNDS_RIGHT = 400;
 
 const BOUNCE = 0.95;
 
+const Friction = 0.3;
+
 /**
  * 计时器系统
  */
@@ -69,7 +71,9 @@ class Body {
         }
 
         //TODO： 左右越界反弹
-
+        if(this.x + this.width>=BOUNDS_RIGHT || this.x <= BOUNDS_LEFT){
+            this.vx=-BOUNCE * this.vx;
+        }
 
 
         //根据物体位置更新显示对象属性
