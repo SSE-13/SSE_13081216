@@ -48,16 +48,18 @@ var Body = (function () {
         this.vy += duringTime * GRAVITY;
         this.x += duringTime * this.vx;
         this.y += duringTime * this.vy;
-        //反弹
+        //触底反弹
         if (this.y + this.height > BOUNDS_BOTTOM) {
             this.y = BOUNDS_BOTTOM - this.height;
             this.vy = -BOUNCE * this.vy;
+            //摩擦力运算       
             if (this.vx > 0) {
                 this.vx -= duringTime * F * GRAVITY;
             }
             else
                 this.vx += duringTime * F * GRAVITY;
         }
+        //触顶反弹
         if (this.y < 0) {
             this.y = 0;
             this.vy = -BOUNCE * this.vy;
