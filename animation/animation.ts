@@ -11,7 +11,7 @@ const BOUNDS_RIGHT = 400;
 
 const BOUNCE = 0.95;
 
-const Friction = 0.3;
+const F = 0.3;
 
 /**
  * 计时器系统
@@ -67,8 +67,17 @@ class Body {
 
         //反弹
         if (this.y + this.height > BOUNDS_BOTTOM) {
+            this.y = BOUNDS_BOTTOM - this.height;
             this.vy = -BOUNCE * this.vy;
+            
+            if(this.vx > 0){
+                this.vx -= duringTime * F * GRAVITY;                
+            }
+            else{
+                this.vx += duringTime * F * GRAVITY;
+            }
         }
+
 
         //TODO： 左右越界反弹
         if(this.x + this.width>=BOUNDS_RIGHT || this.x <= BOUNDS_LEFT){
@@ -86,8 +95,8 @@ class Body {
 
 
 var rect = new Rect();
-rect.width = 150;
-rect.height = 100;
+rect.width = 50;
+rect.height = 50;
 rect.color = '#FF0000';
 
 /**
@@ -96,7 +105,7 @@ rect.color = '#FF0000';
 var body = new Body(rect);
 body.width = rect.width;
 body.height = rect.height;
-body.vx = 5;//需要保证 vx 在 0-50的范围内行为正常
+body.vx = 100;//需要保证 vx 在 0-50的范围内行为正常
 body.vy = 0;//需要保证 vy 在 0-50的范围内行为正常
 
 
