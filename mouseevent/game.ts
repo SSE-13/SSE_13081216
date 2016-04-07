@@ -40,25 +40,16 @@ human.addChild(right_arm);
 var renderCore = new render.RenderCore();
 
 renderCore.start(humanContainer, ["L_leg.png", "R_leg.png", "head.png", "body.png","L_arm.png","R_arm.png"]);
-var humanContainer = new render.DisplayObjectContainer();
-var head = new render.Bitmap();
-head.x = 100;
-head.source = "wander-icon.jpg";
-humanContainer.addChild(head);
-
-
-var renderCore = new render.RenderCore();
-renderCore.start(humanContainer, ["wander-icon.jpg"]);
 
 class HumanBody extends Body {
     
     
     vx:number = 5;
-    
+    this.rotation += this.vrotation*duringTime;
 
     onTicker(duringTime: number) {
-        this.x = 100;//+= duringTime * this.vx;
-        this.y = 100;
+        this.x += duringTime;
+        this.rotation += this.vrotation*duringTime;
 
     }
 }
