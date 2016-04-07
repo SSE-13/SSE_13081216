@@ -45,12 +45,11 @@ class HumanBody extends Body {
     
     
     vx:number = 5;
-    this.rotation += this.vrotation*duringTime;
+    vrotation = Math.PI/2;
 
     onTicker(duringTime: number) {
-        this.x += duringTime;
+        this.x += this.vx*duringTime;
         this.rotation += this.vrotation*duringTime;
-
     }
 }
 
