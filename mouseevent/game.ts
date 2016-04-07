@@ -68,8 +68,23 @@ var headHitTest = (localPoint:math.Point,displayObject:render.DisplayObject) =>{
     return true;
 }
 
-var headOnClick = () => {
-    alert("clicked!!");
+var headOnClick = function() {
+     if (isHead == 1) {
+        if (body.vx != 0) {
+            body.vx *= -1;
+            body.vrotation *= -1;
+        }
+        if (body.vx == 0) {
+            isHead = 0;
+        }
+    }
+    if (isHead != 1) {
+        body.vx = 5;
+        body.vrotation = Math.PI / 2;
+        isHead = 0;
+    }
+    ClickedHead = false;
+    console.log("clickhead:" + isHead);
     //修改 HumanBody 的速度，使其反向移动
 }
 
