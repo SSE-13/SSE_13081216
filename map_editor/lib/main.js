@@ -7,6 +7,14 @@ function readFile() {
     var mapData = obj.map;
     return mapData;
 }
+function writeFile() {
+    console.log(mapData);
+    var map_path = __dirname + "/map.json";
+    var json = "{\"map\":" + JSON.stringify(mapData) + "}";
+    console.log(json);
+    fs.writeFileSync(map_path, json, "utf-8");
+    console.log("saved");
+}
 function createMapEditor() {
     var world = new editor.WorldMap();
     var rows = mapData.length;
@@ -27,12 +35,38 @@ function createMapEditor() {
     }
     return world;
 }
+var SaveHitTest = (localPoint, displayObject) => {
+    if (localPoint.x >= 0 && localPoint.x <= 100 && localPoint.y >= 0 && localPoint.y <= 50)
+        return true;
+};
 function onTileClick(tile) {
-    console.log(tile);
+    console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
+    mapData[tile.ownedRow][tile.ownedCol] = mapData[tile.ownedRow][tile.ownedCol] ? 0 : 1;
+    tile.setWalkable(mapData[tile.ownedRow][tile.ownedCol]);
+    console.log(tile.ownedRow + " " + tile.ownedCol + " " + mapData[tile.ownedRow][tile.ownedCol]);
+}
+function onSaveClick() {
+    console.log("saving");
+    writeFile();
 }
 var mapData = readFile();
 var renderCore = new render.RenderCore();
 var eventCore = new events.EventCore();
 eventCore.init();
+var mainContainer = new render.DisplayObjectContainer();
+var button = new render.Rect();
+mainContainer.addChild(button);
+button.x = 200;
+button.y = 200;
+button.width = 80;
+button.height = 80;
+var textButton = new render.TextField();
+mainContainer.addChild(textButton);
+textButton.text = "save";
+textButton.x = 200;
+textButton.y = 200;
 var editor = createMapEditor();
-renderCore.start(editor);
+mainContainer.addChild(textButton);
+mainContainer.addChild(editor);
+renderCore.start(mainContainer);
+eventCore.register(textButton, SaveHitTest, onSaveClick);
