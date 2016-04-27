@@ -1,3 +1,19 @@
+function readFile() {
+    var map_path = __dirname + "/map.json";
+    var content = fs.readFileSync(map_path, "utf-8");
+    var obj = JSON.parse(content);
+    var mapData = obj.map;
+    return mapData;
+}
+function writeFile() {
+    console.log(mapData);
+    var map_path = __dirname + "/map.json";
+    var json = "{\"map\":" + JSON.stringify(mapData) + "}";
+    console.log(json);
+    fs.writeFileSync(map_path, json, "utf-8");
+    console.log("saved");
+}
+var stage = new render.DisplayObjectContainer();
 function createMapEditor() {
     var world = new editor.WorldMap();
     var rows = mapData.length;
@@ -13,6 +29,7 @@ function createMapEditor() {
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
             world.addChild(tile);
+            //      map_tile.push(tile);
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
         }
     }
