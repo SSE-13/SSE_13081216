@@ -13,6 +13,7 @@ function writeFile() {
     fs.writeFileSync(map_path, json, "utf-8");
     console.log("saved");
 }
+var stage = new render.DisplayObjectContainer();
 function createMapEditor() {
     var world = new editor.WorldMap();
     var rows = mapData.length;
@@ -28,6 +29,7 @@ function createMapEditor() {
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
             world.addChild(tile);
+            //      map_tile.push(tile);
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
         }
     }
