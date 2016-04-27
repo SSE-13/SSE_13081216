@@ -9,12 +9,21 @@ var astar;
             this.x = x;
             this.y = y;
         }
+        /*
+                toString() {
+                    if (this.inPath) {
+                        return "田"
+                    }
+                    else{
+                        return "口"
+                    }
+                }*/
         Node.prototype.toString = function () {
-            if (this.inPath) {
+            if (!this.walkable) {
                 return "田";
             }
-            if (!this.walkable) {
-                return "国";
+            if (this.inPath) {
+                return "★";
             }
             else {
                 return "口";
@@ -48,6 +57,7 @@ var astar;
             this._nodes[x][y].walkable = value;
         };
         Object.defineProperty(Grid.prototype, "startNode", {
+            //get?
             get: function () {
                 return this._startNode;
             },
@@ -83,7 +93,7 @@ var astar;
             var endY = Math.min(this.numRows - 1, node.y + 1);
             for (var i = startX; i <= endX; i++) {
                 for (var j = startY; j <= endY; j++) {
-                    result.push(this.getNode(i, j));
+                    result.push(this.getNode(i, j)); //将邻居结点依次放入result数组中（包括node结点自身）
                 }
             }
             return result;
@@ -94,14 +104,9 @@ var astar;
                 for (var x = 0; x < this._numCols; x++) {
                     result += this._nodes[x][y].toString();
                 }
-                result += "\n";
+                result += "\n"; //一行结果输出完后换行
             }
             return result;
-            // return this._nodes.map(
-            //     (arr) => arr.map(
-            //         (node) => node.toString()
-            //     ).join("")
-            // ).join("\n")
         };
         return Grid;
     }());
@@ -129,7 +134,7 @@ var astar;
             var dy = Math.abs(node.y - _endNode.y);
             var diag = Math.min(dx, dy);
             var straight = dx + dy;
-            return DIAG_COST * diag + STRAIGHT_COST * (straight - 2 * diag);
+            return DIAG_COST * diag + STRAIGHT_COST * (straight - 2 * diag); //先走对角线再走直线
         };
         AStar.prototype.setHeurisitic = function (heuristic) {
             this._heuristic = heuristic;
@@ -179,7 +184,7 @@ var astar;
                             test.f = f;
                             test.g = g;
                             test.h = h;
-                            test.parent = node;
+                            test.parent = node; //记下使该结点（test）的f值最小的父结点node
                         }
                     }
                     else {
@@ -204,6 +209,7 @@ var astar;
         AStar.prototype.buildPath = function () {
             this._path = new Array();
             var node = this._endNode;
+            node.inPath = true;
             this._path.push(node);
             while (node != this._startNode) {
                 node = node.parent;

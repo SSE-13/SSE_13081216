@@ -13,6 +13,7 @@ var events;
                 for (var i = 0; i < _this.eventInfos.length; i++) {
                     var info = _this.eventInfos[i];
                     var globalMatrix = info.displayObject.globalMatrix;
+                    //思考，invert 是什么意思？对应线性代数的什么概念？为什么要做这一步？
                     var invertGlobalMatrix = math.invertMatrix(globalMatrix);
                     var newPoint = math.pointAppendMatrix(stageClickedPoint, invertGlobalMatrix);
                     //如果检测返回true，则认为点中了
@@ -23,12 +24,6 @@ var events;
                 }
             };
         }
-        EventCore.getInstance = function () {
-            if (EventCore._instance == null) {
-                EventCore._instance = new EventCore();
-            }
-            return EventCore._instance;
-        };
         EventCore.prototype.init = function () {
             this.eventInfos = [];
             var canvas = document.getElementById("game");

@@ -12,41 +12,23 @@ var render;
      */
     var DisplayObject = (function () {
         function DisplayObject() {
-            this._width = 100;
-            this._height = 100;
+            this.width = 100;
+            this.height = 100;
             this.x = 0;
             this.y = 0;
             this.scaleX = 1;
             this.scaleY = 1;
             this.rotation = 0;
             this.globalMatrix = new math.Matrix();
+            //  console.log("DisplayObject.constructor()");
         }
-        Object.defineProperty(DisplayObject.prototype, "width", {
-            get: function () {
-                return this._width;
-            },
-            set: function (value) {
-                this._width = value;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(DisplayObject.prototype, "height", {
-            get: function () {
-                return this._height;
-            },
-            set: function (value) {
-                this._height = value;
-            },
-            enumerable: true,
-            configurable: true
-        });
         DisplayObject.prototype.getLocalMatrix = function () {
             var localMatrix = new math.Matrix();
             localMatrix.updateFromDisplayObject(this.x, this.y, this.scaleX, this.scaleY, this.rotation);
             return localMatrix;
         };
         DisplayObject.prototype.draw = function (context) {
+            context.save();
             var parent = this.parent;
             var localMatrix = this.getLocalMatrix();
             if (!parent) {
@@ -59,6 +41,7 @@ var render;
             }
             context.setTransform(this.globalMatrix.a, this.globalMatrix.b, this.globalMatrix.c, this.globalMatrix.d, this.globalMatrix.tx, this.globalMatrix.ty);
             this.render(context);
+            context.restore();
         };
         DisplayObject.prototype.render = function (context) {
         };
@@ -126,23 +109,12 @@ var render;
         __extends(TextField, _super);
         function TextField() {
             _super.apply(this, arguments);
-            this.text = "";
-            /**
-             * 这个"center"|"left"表示这个变量的类型是字符串，并且只允许是 center 或者 left，其他参数都会编译失败
-             */
-            this.textAlign = "left";
-            /**
-             * 字体大小
-             */
-            this.fontSize = 20;
         }
         TextField.prototype.render = function (context) {
-            context.font = this.fontSize + "px Arial";
+            context.font = "20px Arial";
             context.fillStyle = '#000000';
-            context.textAlign = this.textAlign;
-            //实现居中功能
-            var offsetx = this.textAlign == "center" ? this.width / 2 : 0;
-            context.fillText(this.text, offsetx, this.fontSize, this.width);
+            context.textAlign = "center";
+            context.fillText('HelloWorld', 0, 20, this.width);
         };
         return TextField;
     }(DisplayObject));

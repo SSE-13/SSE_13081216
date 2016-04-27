@@ -28,25 +28,13 @@ var editor;
             _super.call(this);
         }
         Tile.prototype.setWalkable = function (value) {
-            this.color = value ? "#0000FF" : "#FF0000";
+            this.source = value + ".jpg";
+            //  this.color = value ? "#0000FF" : "#FF0000"; //若value为1，则返回前者；若value为0，则返回后者
+        };
+        Tile.prototype.setProp = function (value) {
+            this.source = value + ".png";
         };
         return Tile;
-    }(render.Rect));
+    }(render.Bitmap));
     editor.Tile = Tile;
-    var ControlPanel = (function (_super) {
-        __extends(ControlPanel, _super);
-        function ControlPanel() {
-            _super.call(this);
-            var button = new ui.Button();
-            button.text = "Hello";
-            button.width = 100;
-            button.height = 50;
-            this.addChild(button);
-            button.onClick = function () {
-                alert(111);
-            };
-        }
-        return ControlPanel;
-    }(render.DisplayObjectContainer));
-    editor.ControlPanel = ControlPanel;
 })(editor || (editor = {}));
