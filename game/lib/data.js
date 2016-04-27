@@ -1,4 +1,4 @@
-+ var fs = require("fs");
+var fs = require("fs");
 var data;
 (function (data) {
     var Storage = (function () {
@@ -10,7 +10,7 @@ var data;
             }
             return Storage._instance;
         };
-        Storage.prototype.readFile = function (callback) {
+        Storage.prototype.readFile = function () {
             var map_path = __dirname + "/map.json";
             var content = fs.readFileSync(map_path, "utf-8");
             var obj = JSON.parse(content);

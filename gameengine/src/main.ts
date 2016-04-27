@@ -16,6 +16,9 @@ function writeFile() {
     console.log("saved");
 }
 
+
+var stage = new render.DisplayObjectContainer();
+
 function createMapEditor() {
     var world = new editor.WorldMap();
     var rows = mapData.length;
@@ -23,7 +26,7 @@ function createMapEditor() {
 
     for (var col = 0; col < rows; col++) {
         for (var row = 0; row < cols; row++) {
-            var tile = new editor.Tile();
+           var tile = new editor.Tile();
             tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
             tile.y = row * editor.GRID_PIXEL_HEIGHT
@@ -32,6 +35,7 @@ function createMapEditor() {
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
             world.addChild(tile);
+      //      map_tile.push(tile);
 
 
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
