@@ -16,9 +16,9 @@ module editor {
 
             super();
             this.cache = document.createElement("canvas");
-            this.cache.width = 500;
-            this.cache.height = 500;
-            //this.stroke=new render.Bitmap("box2.jpg","box2");
+            this.cache.width = 800;
+            this.cache.height = 600;
+            this.stroke=new render.Bitmap("box2.jpg","box2");
 
         }
         getChild(row:number,col:number){
@@ -69,15 +69,15 @@ module editor {
 
 
         constructor() {
-            super("box1.jpg","Tile");
+            super("road1.jpg","Tile");
         }
 
         public setWalkable(value) {
             if(value==0){
-                this.material=new Material("box1.jpg","box",value);
+                this.material=new Material("road1.jpg","road",value);
             }
             else{
-                this.material=new Material("road1.jpg","road",value);
+                this.material=new Material("box1.jpg","box",value);
             }
             this.source=this.material.material.source;
             this.name=this.material.material.name;
@@ -109,9 +109,9 @@ module editor {
 
 
             var materialradio=new ui.MaterialRadio(materials);
-            materialradio.radiobuttons[0].text="box";
-            materialradio.radiobuttons[1].text="bar";
-            materialradio.radiobuttons[2].text="road";
+            materialradio.radiobuttons[0].text="road";
+            materialradio.radiobuttons[1].text="box";
+            materialradio.radiobuttons[2].text="bar";
             
             var walkableradio=new ui.WalkableRadio(materials);
             walkableradio.radiobuttons[0].text="可走";
@@ -121,7 +121,7 @@ module editor {
 
             var submit=new ui.Button("确认");
             submit.height=50;
-            submit.y=230;
+            submit.y=280;
             var save=new ui.Button("保存");
             save.height=50;
             save.x=120;

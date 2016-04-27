@@ -13,9 +13,9 @@ var editor;
             _super.call(this);
             this.isDirty = true;
             this.cache = document.createElement("canvas");
-            this.cache.width = 500;
-            this.cache.height = 500;
-            //this.stroke=new render.Bitmap("box2.jpg","box2");
+            this.cache.width = 800;
+            this.cache.height = 600;
+            this.stroke = new render.Bitmap("box2.jpg", "box2");
         }
         WorldMap.prototype.getChild = function (row, col) {
             var rows = mapData.length;
@@ -53,14 +53,14 @@ var editor;
     var Tile = (function (_super) {
         __extends(Tile, _super);
         function Tile() {
-            _super.call(this, "box1.jpg", "Tile");
+            _super.call(this, "road1.jpg", "Tile");
         }
         Tile.prototype.setWalkable = function (value) {
             if (value == 0) {
-                this.material = new Material("box1.jpg", "box", value);
+                this.material = new Material("road1.jpg", "road", value);
             }
             else {
-                this.material = new Material("road1.jpg", "road", value);
+                this.material = new Material("box1.jpg", "box", value);
             }
             this.source = this.material.material.source;
             this.name = this.material.material.name;
@@ -86,16 +86,16 @@ var editor;
             var _this = this;
             _super.call(this);
             var materialradio = new ui.MaterialRadio(materials);
-            materialradio.radiobuttons[0].text = "box";
-            materialradio.radiobuttons[1].text = "bar";
-            materialradio.radiobuttons[2].text = "road";
+            materialradio.radiobuttons[0].text = "road";
+            materialradio.radiobuttons[1].text = "box";
+            materialradio.radiobuttons[2].text = "bar";
             var walkableradio = new ui.WalkableRadio(materials);
             walkableradio.radiobuttons[0].text = "可走";
             walkableradio.radiobuttons[1].text = "不可走";
             this.currentmaterial = materialradio.setMaterial;
             var submit = new ui.Button("确认");
             submit.height = 50;
-            submit.y = 230;
+            submit.y = 280;
             var save = new ui.Button("保存");
             save.height = 50;
             save.x = 120;
