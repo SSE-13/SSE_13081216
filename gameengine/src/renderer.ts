@@ -113,6 +113,13 @@ module render {
 
 
         source;
+        name:string;
+        constructor(source:string,name:string){
+            super();
+            this.name=name;
+            this.source=source;
+            
+        }
 
         render(context: CanvasRenderingContext2D) {
 
@@ -121,13 +128,14 @@ module render {
                 context.drawImage(image, 0, 0);
             }
             else {
-                context.font = "20px Arial";
-                context.fillStyle = '#000000';
-                context.fillText('错误的URL', 0, 20);
+                //context.font = "20px Arial";
+                //context.fillStyle = '#000000';
+                //context.fillText('错误的URL', 0, 20);
             }
         }
 
     }
+    
 
     export class Rect extends DisplayObject {
 
@@ -197,7 +205,7 @@ module render {
             }
 
             function onLoadError() {
-                alert('资源加载失败:' + imageUrl);
+               // alert('资源加载失败:' + imageUrl);
             }
         })
     }

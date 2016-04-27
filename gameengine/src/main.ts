@@ -1,23 +1,4 @@
 
-function readFile() {
-    var map_path = __dirname + "/map.json"
-    var content = fs.readFileSync(map_path, "utf-8");
-    var obj = JSON.parse(content);
-    var mapData = obj.map;
-    return mapData;
-}
-
-function writeFile() {
-    console.log(mapData);
-    var map_path = __dirname + "/map.json"
-    var json = "{\"map\":" + JSON.stringify(mapData) + "}";
-    console.log(json);
-    fs.writeFileSync(map_path, json, "utf-8");
-    console.log("saved");
-}
-
-
-var stage = new render.DisplayObjectContainer();
 
 function createMapEditor() {
     var world = new editor.WorldMap();
@@ -25,8 +6,9 @@ function createMapEditor() {
     var cols = mapData[0].length;
 
     for (var col = 0; col < rows; col++) {
+
         for (var row = 0; row < cols; row++) {
-           var tile = new editor.Tile();
+            var tile = new editor.Tile();
             tile.setWalkable(mapData[row][col]);
             tile.x = col * editor.GRID_PIXEL_WIDTH;
             tile.y = row * editor.GRID_PIXEL_HEIGHT
@@ -34,26 +16,79 @@ function createMapEditor() {
             tile.ownedRow = row;
             tile.width = editor.GRID_PIXEL_WIDTH;
             tile.height = editor.GRID_PIXEL_HEIGHT;
+
+
             world.addChild(tile);
-      //      map_tile.push(tile);
 
 
             eventCore.register(tile, events.displayObjectRectHitTest, onTileClick);
+
         }
+
     }
+
+
+
+
     return world;
 
 }
 
 
+var cement = new editor.Material("road1.jpg", "road", 0);
+var water = new editor.Material("box1.jpg", "box", 0);
+var wood = new editor.Material("bar1.jpg", "bar", 0);
+var materials = new Array<editor.Material>();
+materials.push(cement);
+materials.push(water);
+materials.push(wood);
+
+
+var currenttile: editor.Tile;
+
+
+//读取json配置文件
+
+
+/*function LoadData(callback) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", __dirname + "/mapsave.json", true);
+    xmlhttp.send(null);
+    xmlhttp.onload = onloadComplete
+    function onloadComplete() {
+        var data = JSON.parse(xmlhttp.responseText);
+        callback(data);
+    }
+
+
+
+}
+
+LoadData(function(data){
+    console.log(data[0][0].walkable,data[0][0].material);
+})*/ 
+
+
 
 function onTileClick(tile: editor.Tile) {
-    console.log(tile);
+
+
+    currenttile = tile;
+    if (mapEditor.children[mapEditor.children.length] != mapEditor.stroke) {
+        mapEditor.addChild(mapEditor.stroke);
+    }
+    mapEditor.stroke.x = tile.x;
+    mapEditor.stroke.y = tile.y;
+    information.Update(tile);
+    console.log(tile.toString());
 }
 
 var storage = data.Storage.getInstance();
 storage.readFile();
 var mapData = storage.mapData;
+
+
+
 
 
 var renderCore = new render.RenderCore();
@@ -62,10 +97,17 @@ eventCore.init();
 
 
 var mapEditor = createMapEditor();
+
 var stage = new render.DisplayObjectContainer();
 stage.addChild(mapEditor);
-var panel = new editor.ControlPanel();
+var information = new ui.Information();
+information.x = 300;
+
+var panel = new editor.ControlPanel(materials);
 panel.x = 300;
+panel.y = 150;
+stage.addChild(information);
 stage.addChild(panel);
 
-renderCore.start(stage);
+
+renderCore.start(stage, ["road1.jpg", "box1.jpg", "bar1.jpg"]);

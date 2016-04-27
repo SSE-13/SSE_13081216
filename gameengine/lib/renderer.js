@@ -86,8 +86,10 @@ var render;
     render.DisplayObjectContainer = DisplayObjectContainer;
     var Bitmap = (function (_super) {
         __extends(Bitmap, _super);
-        function Bitmap() {
-            _super.apply(this, arguments);
+        function Bitmap(source, name) {
+            _super.call(this);
+            this.name = name;
+            this.source = source;
         }
         Bitmap.prototype.render = function (context) {
             var image = imagePool[this.source];
@@ -113,7 +115,7 @@ var render;
         Rect.prototype.render = function (context) {
             context.fillStyle = this.color;
             context.beginPath();
-            context.strokeStyle = this.strokeColor;
+            //context.strokeStyle = this.strokeColor;
             context.rect(0, 0, this.width, this.height);
             context.closePath();
             context.fill();

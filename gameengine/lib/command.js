@@ -16,12 +16,12 @@ var command;
         };
         Invoker.prototype.undo = function () {
             var command = this._list.pop();
-            this.new_command = command;
-            this.new_command.undo();
+            return command.undo();
         };
         Invoker.prototype.setCommand = function (command) {
             command.execute();
             this._list.push(command);
+            console.log(this._list.length);
         };
         return Invoker;
     }());
@@ -29,47 +29,135 @@ var command;
     var Command = (function () {
         function Command() {
         }
+        Command.prototype.getpara = function () {
+        };
         Command.prototype.execute = function () {
+        };
+        Command.prototype.undo = function () {
         };
         return Command;
     }());
     command_1.Command = Command;
-    var CommandA = (function (_super) {
-        __extends(CommandA, _super);
-        function CommandA(row, col, num) {
+    var CommandTileClick = (function (_super) {
+        __extends(CommandTileClick, _super);
+        function CommandTileClick(panelXt, panelYt, panelButton, panelTXsource, panelTXwalkable, panelTXnumber, panelSucaiButton) {
             _super.call(this);
-            this.row = row;
-            this.col = col;
-            this.num = num;
+            this.panelXt = panelXt;
+            this.panelYt = panelYt;
+            this.panelButton = panelButton;
+            this.panelTXsource = panelTXsource;
+            this.panelTXwalkable = panelTXwalkable;
+            this.panelTXnumber = panelTXnumber;
+            this.panelSucaiButton = panelSucaiButton;
         }
-        CommandA.prototype.undo = function (row, col, num) {
-            console.log("Undo " + this.row + this.col + this.num);
-            this.getNewRow(this.row);
-            this.getNewCol(this.col);
-            this.getNewNum(this.num);
+        CommandTileClick.prototype.getPara = function (xtext, ytext, buttonColor, buttonText, TXsource, TXwalkable, TXnumber, sucaiButtonText, sucaiButtonColor) {
+            this.xtext = xtext;
+            this.ytext = ytext;
+            this.buttonColor = buttonColor;
+            this.buttonText = buttonText;
+            this.TXsource = TXsource;
+            this.TXwalkable = TXwalkable;
+            this.TXnumber = TXnumber;
+            this.sucaiButtonText = sucaiButtonText;
+            this.sucaiButtonColor = sucaiButtonColor;
         };
-        CommandA.prototype.setNewRow = function () {
-            return this.new_row;
+        CommandTileClick.prototype.undo = function () {
+            this.panelXt.text = this.xtext;
+            this.panelYt.text = this.ytext;
+            this.panelButton.text = this.buttonText;
+            this.panelTXsource[0] = this.TXsource;
+            this.panelTXwalkable[0] = this.TXwalkable;
+            this.panelTXnumber[0] = this.TXnumber;
+            this.panelSucaiButton.text = this.sucaiButtonText;
         };
-        CommandA.prototype.getNewRow = function (row) {
-            this.new_row = row;
-        };
-        CommandA.prototype.setNewCol = function () {
-            return this.new_col;
-        };
-        CommandA.prototype.getNewCol = function (col) {
-            this.new_col = col;
-        };
-        CommandA.prototype.setNewNum = function () {
-            return this.new_num;
-        };
-        CommandA.prototype.getNewNum = function (num) {
-            this.new_num = num;
-        };
-        CommandA.prototype.execute = function () {
-            console.log("execute " + this.row + this.col);
-        };
-        return CommandA;
+        return CommandTileClick;
     }(Command));
-    command_1.CommandA = CommandA;
+    command_1.CommandTileClick = CommandTileClick;
+    var CommandTXClick = (function (_super) {
+        __extends(CommandTXClick, _super);
+        function CommandTXClick(panelTXsource, panelTXwalkable, panelTXnumber, panelSucaiButton) {
+            _super.call(this);
+            this.panelTXsource = panelTXsource;
+            this.panelTXwalkable = panelTXwalkable;
+            this.panelTXnumber = panelTXnumber;
+            this.panelSucaiButton = panelSucaiButton;
+        }
+        CommandTXClick.prototype.getPara = function (TXsource, TXwalkable, TXnumber, sucaiButtonText, sucaiButtonColor) {
+            this.TXsource = TXsource;
+            this.TXwalkable = TXwalkable;
+            this.TXnumber = TXnumber;
+            this.sucaiButtonText = sucaiButtonText;
+            this.sucaiButtonColor = sucaiButtonColor;
+        };
+        CommandTXClick.prototype.undo = function () {
+            this.panelTXsource[0] = this.TXsource;
+            this.panelTXwalkable[0] = this.TXwalkable;
+            this.panelTXnumber[0] = this.TXnumber;
+            this.panelSucaiButton.text = this.sucaiButtonText;
+        };
+        return CommandTXClick;
+    }(Command));
+    command_1.CommandTXClick = CommandTXClick;
+    var CommandButtonClick = (function (_super) {
+        __extends(CommandButtonClick, _super);
+        function CommandButtonClick(panelButton, panelTXsource, panelTXwalkable, panelTXnumber, panelSucaiButton, tile) {
+            _super.call(this);
+            this.panelButton = panelButton;
+            this.panelTXsource = panelTXsource;
+            this.panelTXwalkable = panelTXwalkable;
+            this.panelTXnumber = panelTXnumber;
+            this.panelSucaiButton = panelSucaiButton;
+            this.tile = tile;
+        }
+        CommandButtonClick.prototype.getPara = function (x, y, TXdata, MPdata, buttonColor, buttonText, TXsource, TXwalkable, TXnumber, sucaiButtonText, sucaiButtonColor, tileSource, tileWalkable) {
+            this.x = x;
+            this.y = y;
+            this.TXdata = TXdata;
+            this.MPdata = MPdata;
+            this.buttonColor = buttonColor;
+            this.buttonText = buttonText;
+            this.TXsource = TXsource;
+            this.TXwalkable = TXwalkable;
+            this.TXnumber = TXnumber;
+            this.sucaiButtonText = sucaiButtonText;
+            this.sucaiButtonColor = sucaiButtonColor;
+            this.tileSource = tileSource;
+            this.tileWalkable = tileWalkable;
+        };
+        CommandButtonClick.prototype.undo = function () {
+            mapData[this.y][this.x] = this.MPdata;
+            this.panelButton.text = this.buttonText;
+            this.panelTXsource[0] = this.TXsource;
+            this.panelTXwalkable[0] = this.TXwalkable;
+            this.panelTXnumber[0] = this.TXnumber;
+            this.panelSucaiButton.text = this.sucaiButtonText;
+            this.tile.source = this.tileSource;
+            this.tile.setWalkable(this.tileWalkable);
+        };
+        return CommandButtonClick;
+    }(Command));
+    command_1.CommandButtonClick = CommandButtonClick;
+    var CommandSucaiButtonClick = (function (_super) {
+        __extends(CommandSucaiButtonClick, _super);
+        function CommandSucaiButtonClick(panelSucaiButton, tile) {
+            _super.call(this);
+            this.panelSucaiButton = panelSucaiButton;
+            this.tile = tile;
+        }
+        CommandSucaiButtonClick.prototype.getPara = function (x, y, TXdata, MPdata, sucaiButtonColor, tileSource, tileSourceNum) {
+            this.x = x;
+            this.y = y;
+            this.TXdata = TXdata;
+            this.MPdata = MPdata;
+            this.sucaiButtonColor = sucaiButtonColor;
+            this.tileSource = tileSource;
+            this.tileSourceNum = tileSourceNum;
+        };
+        CommandSucaiButtonClick.prototype.undo = function () {
+            mapData[this.y][this.x] = this.MPdata;
+            this.tile.source = this.tileSource;
+        };
+        return CommandSucaiButtonClick;
+    }(Command));
+    command_1.CommandSucaiButtonClick = CommandSucaiButtonClick;
 })(command || (command = {}));
