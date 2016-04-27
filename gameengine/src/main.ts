@@ -35,13 +35,13 @@ function createMapEditor() {
 }
 
 
-var cement = new editor.Material("road1.jpg", "road", 0);
-var water = new editor.Material("box1.jpg", "box", 0);
-var wood = new editor.Material("bar1.jpg", "bar", 0);
+var road = new editor.Material("road1.jpg", "road", 0);
+var box = new editor.Material("box1.jpg", "box", 0);
+var bar = new editor.Material("bar1.jpg", "bar", 0);
 var materials = new Array<editor.Material>();
-materials.push(cement);
-materials.push(water);
-materials.push(wood);
+materials.push(road);
+materials.push(box);
+materials.push(bar);
 
 
 var currenttile: editor.Tile;
@@ -101,7 +101,7 @@ var mapEditor = createMapEditor();
 var stage = new render.DisplayObjectContainer();
 stage.addChild(mapEditor);
 var information = new ui.Information();
-information.x = 300;
+information.x = 200;
 
 var panel = new editor.ControlPanel(materials);
 panel.x = 300;
@@ -110,4 +110,4 @@ stage.addChild(information);
 stage.addChild(panel);
 
 
-renderCore.start(stage, ["road1.jpg", "box1.jpg", "bar1.jpg"]);
+renderCore.start(stage, ["box1.jpg", "bar1.jpg", "road1.jpg", "box2.jpg"]);

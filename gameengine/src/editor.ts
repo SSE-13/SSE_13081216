@@ -16,9 +16,9 @@ module editor {
 
             super();
             this.cache = document.createElement("canvas");
-            this.cache.width = 400;
-            this.cache.height = 400;
-            this.stroke=new render.Bitmap("box2.jpg","box2");
+            this.cache.width = 500;
+            this.cache.height = 500;
+            //this.stroke=new render.Bitmap("box2.jpg","box2");
 
         }
         getChild(row:number,col:number){
@@ -74,10 +74,10 @@ module editor {
 
         public setWalkable(value) {
             if(value==0){
-                this.material=new Material("box1.jpg","cement",value);
+                this.material=new Material("box1.jpg","box",value);
             }
             else{
-                this.material=new Material("road1.jpg","water",value);
+                this.material=new Material("road1.jpg","road",value);
             }
             this.source=this.material.material.source;
             this.name=this.material.material.name;
@@ -109,9 +109,9 @@ module editor {
 
 
             var materialradio=new ui.MaterialRadio(materials);
-            materialradio.radiobuttons[0].text="wood";
-            materialradio.radiobuttons[1].text="water";
-            materialradio.radiobuttons[2].text="cement";
+            materialradio.radiobuttons[0].text="box";
+            materialradio.radiobuttons[1].text="bar";
+            materialradio.radiobuttons[2].text="road";
             
             var walkableradio=new ui.WalkableRadio(materials);
             walkableradio.radiobuttons[0].text="可走";
@@ -125,7 +125,7 @@ module editor {
             var save=new ui.Button("保存");
             save.height=50;
             save.x=120;
-            save.y=230;
+            save.y=280;
             submit.onClick=()=>{
                 if(currenttile){
                 var rows = mapData.length;
@@ -148,9 +148,10 @@ module editor {
             }
             save.onClick=()=>{
                 storage.saveFile(mapEditor);
-               // alert("保存成功！");
+               alert("保存成功！");
             }
-            walkableradio.x=120;
+            
+            walkableradio.x=180;
             
             this.addChild(materialradio);
             this.addChild(walkableradio);

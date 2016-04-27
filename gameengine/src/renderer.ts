@@ -13,7 +13,7 @@ module render {
      */
     export class DisplayObject {
 
-        protected _width = 100
+        protected _width = 100;
         protected _height = 100;
 
         public get width(): number {
@@ -127,11 +127,11 @@ module render {
             if (image) {
                 context.drawImage(image, 0, 0);
             }
-            else {
-                //context.font = "20px Arial";
-                //context.fillStyle = '#000000';
-                //context.fillText('错误的URL', 0, 20);
-            }
+            /*else {
+                context.font = "20px Arial";
+                context.fillStyle = '#000000';
+                context.fillText('错误的URL', 0, 20);
+            }*/
         }
 
     }
@@ -205,7 +205,7 @@ module render {
             }
 
             function onLoadError() {
-               // alert('资源加载失败:' + imageUrl);
+               alert('资源加载失败:' + imageUrl);
             }
         })
     }

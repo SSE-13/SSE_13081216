@@ -96,11 +96,11 @@ var render;
             if (image) {
                 context.drawImage(image, 0, 0);
             }
-            else {
+            /*else {
                 context.font = "20px Arial";
                 context.fillStyle = '#000000';
                 context.fillText('错误的URL', 0, 20);
-            }
+            }*/
         };
         return Bitmap;
     }(DisplayObject));
@@ -115,7 +115,7 @@ var render;
         Rect.prototype.render = function (context) {
             context.fillStyle = this.color;
             context.beginPath();
-            //context.strokeStyle = this.strokeColor;
+            context.strokeStyle = this.strokeColor;
             context.rect(0, 0, this.width, this.height);
             context.closePath();
             context.fill();
