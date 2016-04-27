@@ -20,17 +20,31 @@ module data {
             var obj = JSON.parse(content);
             this.mapData = obj.map;
         }
-        
-        public saveFile(){
-            var json = {"map":[mapData[0], mapData[1], mapData[2], mapData[3],mapData[4], mapData[5], mapData[6], mapData[7]]};
-            var obj = JSON.stringify(json);
-            var map_path = __dirname + "/map.json";
-            fs.writeFile(map_path, obj, function (err) {
-               if (err) throw err;
-               console.log('Save Done!');
-               alert("Save Done!");
-            });
+        public writeFile(data){
+                var map_path = __dirname + "/mapsave.json"
+
+                var obj = JSON.stringify(data);
+                fs.writeFileSync(map_path, obj, "utf-8");
             
+        }
+        
+
+        
+        public saveFile(worldmap:editor.WorldMap){
+            var rows = mapData.length;
+            var cols = mapData[0].length;
+            var children=worldmap;
+            var Savemapdata=new Array();
+             for (var col = 0; col < rows; col++) {
+                Savemapdata[col]=new Array();
+             for (var row = 0; row < cols; row++) {
+                 var child=<editor.Tile>children.getChild(col,row);
+                Savemapdata[col].push(new editor.Mapdata( child.material.material.source,child.walkable));
+             }
+           
+            
+        }
+        this.writeFile(Savemapdata);
         }
         
         public mapData;

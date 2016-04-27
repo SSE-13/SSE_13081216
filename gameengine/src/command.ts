@@ -1,4 +1,4 @@
-module command {
+module Cmd {
 
     export class Invoker {
         private _list: Array<any>;
